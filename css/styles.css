@@ -34,6 +34,10 @@ a {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #E7E9FC;
+    box-shadow:
+            0px 2px 1px rgba(46, 47, 66, 0.08),
+            0px 1px 1px rgba(46, 47, 66, 0.16),
+            0px 1px 6px rgba(46, 47, 66, 0.08);
 }
 
 .logo {
@@ -81,25 +85,24 @@ a {
     letter-spacing: 0.02em;
     line-height: 1.5;
     padding: 24px 0;
-    transition: all ease-in 0.4s;
     position: relative;
+    transition: color cubic-bezier(0.4, 0, 0.2, 1) 250ms;
 }
 
-.nav-link:after {
+.active {
+    color: #404bbf;
+    transition: color cubic-bezier(0.4, 0, 0.2, 1) 250ms;
+}
+
+.active:after {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: -1px;
     width: 100%;
-    height: 0;
-    border-radius: 4px;
+    height: 4px;
+    border-radius: 2px;
     background: #404BBF;
     left: 0;
-    transition: ease-in 0.4s all;
-}
-
-.nav-link:hover:after {
-    bottom: -1px;
-    height: 4px;
 }
 
 .nav-link:hover,
@@ -135,13 +138,18 @@ a {
 }
 
 .banner {
+    max-width: 1440px;
     padding: 188px 0;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: linear-gradient(rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)),
-        url(../images/people-office.jpg) no-repeat center center;
+    background-image: linear-gradient(rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)),
+        url(../images/people-office.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0 auto;
 }
 
 .banner-title {
@@ -172,7 +180,7 @@ a {
     display: block;
     margin: 0 auto;
     min-width: 169px;
-    transition: all ease-in 0.4s;
+    transition: background-color cubic-bezier(0.4, 0, 0.2, 1) 250ms;
 }
 
 .banner-button:hover,
@@ -205,16 +213,12 @@ a {
 .about-image-wrapper {
     border: 1px solid #8E8F99;
     background-color: #F4F4FD;
-    padding: 24px 0;
     margin-bottom: 8px;
     border-radius: 4px;
-}
-
-.about-image {
-    width: 64px;
-    height: 64px;
-    display: block;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 0;
 }
 
 .about-list,
@@ -235,7 +239,7 @@ a {
 }
 
 .team-info {
-    padding: 32px 16px;
+    padding: 32px 0;
 }
 
 .about-title {
@@ -298,29 +302,31 @@ a {
 
 .socials {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 24px;
     margin-top: 8px;
 }
 
 .socials-link {
     width: 40px;
     height: 40px;
-    background: #4D5AE5;
+    background-color: #4D5AE5;
     cursor: pointer;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all ease-in 0.4s;
+    transition: background-color cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
 }
 
-.socials-link:hover {
-    background: #31D0AA;
+.socials-link:hover,
+.socials-link:active,
+.socials-link:focus {
+    background: #404bbf;
+    color: #F4F4FD;
 }
 
-.socials-image {
-    width: 16px;
-    height: 16px;
+.social-image {
     fill: #FFFFFF;
 }
 
@@ -330,6 +336,43 @@ a {
     flex-wrap: wrap;
     gap: 24px;
     row-gap: 48px;
+}
+
+.portfolio-item {
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-image-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-item:hover {
+    box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+        0px 1px 1px rgba(46, 47, 66, 0.16),
+        0px 2px 1px rgba(46, 47, 66, 0.08);
+}
+
+.item-info {
+    --text-color: #F4F4FD;
+    position: absolute;
+    top: 0;
+    transform: translateY(100%);
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    color: #F4F4FD;
+    padding: 40px 32px;
+    background-color: #4D5AE5;
+    height: 100%;
+    width: 100%;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+.portfolio-item:hover .item-info {
+    transform: translateY(0%);
+
 }
 
 .portfolio-content {
@@ -348,8 +391,13 @@ a {
     padding: 100px 0;
 }
 
+.footer-info {
+    margin-right: 120px;
+}
+
 .footer .container {
     display: flex;
+    align-items: baseline;
 }
 
 .footer-logo {
@@ -377,7 +425,10 @@ a {
 
 .footer-socials {
     width: 208px;
-    margin-left: 120px;
+}
+
+.footer-socials .socials {
+    gap: 16px;
 }
 
 .footer-socials-title {
@@ -385,6 +436,7 @@ a {
     color: #ffffff;
     letter-spacing: 0.02em;
     line-height: 1.5;
+    font-size: 16px;
 }
 
 
